@@ -4,30 +4,45 @@
 
 A collection of shell script tools for rendering and converting Mermaid diagrams.
 
-## Features
+## Table of Contents
 
-- Render Mermaid diagram files (.mmd) to PNG or SVG format
-- Convert SVG files to PDF format
-- Support for custom output directories and filenames
-- High-quality PDF conversion using headless Chrome
+- [Available Scripts](#available-scripts)
+  - [render_mermaid.sh](#render_mermaidsh)
+  - [svg2pdf.sh](#svg2pdfsh)
+- [Installation](#installation)
+- [Workflow Example](#workflow-example)
+- [License](#license)
+- [Author](#author)
+- [Contributing](#contributing)
 
-## Tools
+## Available Scripts
 
-### 1. render_mermaid.sh
+| Script | Description | Input | Output | Dependencies |
+|--------|-------------|-------|--------|--------------|
+| [`render_mermaid.sh`](render_mermaid.sh) | Render Mermaid diagram files to PNG or SVG format | `.mmd` files | PNG/SVG images | `curl`, Mermaid rendering server |
+| [`svg2pdf.sh`](svg2pdf.sh) | Convert SVG files to PDF format using headless Chrome | SVG files | PDF files | Google Chrome/Chromium |
+
+## render_mermaid.sh
 
 A script to render Mermaid diagram files to PNG or SVG format.
 
-#### Usage
+### Features
+
+- Render Mermaid diagram files (.mmd) to PNG or SVG format
+- Support for custom output directories and filenames
+- Configurable server URL for rendering service
+
+### Usage
 
 ```bash
 ./render_mermaid.sh [options] MMD_FILE
 ```
 
-#### Arguments
+### Arguments
 
 - `MMD_FILE` - Path to the Mermaid script file
 
-#### Options
+### Options
 
 - `-t, --type TYPE` - Output type (png or svg) [default: png]
 - `-o, --output-dir DIR` - Output directory [default: current directory]
@@ -35,7 +50,7 @@ A script to render Mermaid diagram files to PNG or SVG format.
 - `-s, --server URL` - Server URL [default: http://localhost:80]
 - `-h, --help` - Show help information
 
-#### Examples
+### Examples
 
 ```bash
 # Basic usage
@@ -48,26 +63,37 @@ A script to render Mermaid diagram files to PNG or SVG format.
 ./render_mermaid.sh --name my_diagram --type png diagram.mmd
 ```
 
-### 2. svg2pdf.sh
+### Dependencies
+
+- `curl` - For HTTP requests
+- Running Mermaid rendering server
+
+## svg2pdf.sh
 
 A script to convert SVG files to PDF format using headless Chrome.
 
-#### Usage
+### Features
+
+- Convert SVG files to PDF format
+- High-quality PDF conversion using headless Chrome
+- Support for custom Chrome/Chromium binary path
+
+### Usage
 
 ```bash
 ./svg2pdf.sh input.svg output.pdf
 ```
 
-#### Arguments
+### Arguments
 
 - `input.svg` - Path to the input SVG file
 - `output.pdf` - Path to the output PDF file
 
-#### Environment Variables
+### Environment Variables
 
 - `CHROME_BIN` - Optional, specify Chrome/Chromium binary path
 
-#### Examples
+### Examples
 
 ```bash
 # Basic conversion
@@ -77,14 +103,7 @@ A script to convert SVG files to PDF format using headless Chrome.
 CHROME_BIN=/usr/bin/google-chrome ./svg2pdf.sh diagram.svg diagram.pdf
 ```
 
-## Dependencies
-
-### render_mermaid.sh
-
-- `curl` - For HTTP requests
-- Running Mermaid rendering server
-
-### svg2pdf.sh
+### Dependencies
 
 - Google Chrome or Chromium browser
 - POSIX shell support

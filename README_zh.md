@@ -4,30 +4,45 @@
 
 一套用于渲染和转换Mermaid图表的Shell脚本工具集。
 
-## 功能特性
+## 目录
 
-- 将Mermaid图表文件（.mmd）渲染为PNG或SVG格式
-- 将SVG文件转换为PDF格式
-- 支持自定义输出目录和文件名
-- 使用无头Chrome进行高质量的PDF转换
+- [可用脚本](#可用脚本)
+  - [render_mermaid.sh](#render_mermaidsh)
+  - [svg2pdf.sh](#svg2pdfsh)
+- [安装](#安装)
+- [工作流程示例](#工作流程示例)
+- [许可证](#许可证)
+- [作者](#作者)
+- [贡献](#贡献)
 
-## 工具列表
+## 可用脚本
 
-### 1. render_mermaid.sh
+| 脚本 | 描述 | 输入 | 输出 | 依赖要求 |
+|------|------|------|------|----------|
+| [`render_mermaid.sh`](render_mermaid.sh) | 将Mermaid图表文件渲染为PNG或SVG格式 | `.mmd` 文件 | PNG/SVG 图片 | `curl`, Mermaid渲染服务器 |
+| [`svg2pdf.sh`](svg2pdf.sh) | 使用无头Chrome将SVG文件转换为PDF格式 | SVG 文件 | PDF 文件 | Google Chrome/Chromium |
+
+## render_mermaid.sh
 
 将Mermaid图表文件渲染为PNG或SVG格式的脚本。
 
-#### 使用方法
+### 功能特性
+
+- 将Mermaid图表文件（.mmd）渲染为PNG或SVG格式
+- 支持自定义输出目录和文件名
+- 可配置渲染服务的服务器URL
+
+### 使用方法
 
 ```bash
 ./render_mermaid.sh [选项] MMD_FILE
 ```
 
-#### 参数
+### 参数
 
 - `MMD_FILE` - Mermaid脚本文件路径
 
-#### 选项
+### 选项
 
 - `-t, --type TYPE` - 输出类型（png或svg）[默认: png]
 - `-o, --output-dir DIR` - 输出目录 [默认: 当前目录]
@@ -35,7 +50,7 @@
 - `-s, --server URL` - 服务器URL [默认: http://localhost:80]
 - `-h, --help` - 显示帮助信息
 
-#### 示例
+### 示例
 
 ```bash
 # 基本用法
@@ -48,26 +63,37 @@
 ./render_mermaid.sh --name my_diagram --type png diagram.mmd
 ```
 
-### 2. svg2pdf.sh
+### 依赖要求
+
+- `curl` - 用于HTTP请求
+- 运行中的Mermaid渲染服务器
+
+## svg2pdf.sh
 
 使用无头Chrome将SVG文件转换为PDF格式的脚本。
 
-#### 使用方法
+### 功能特性
+
+- 将SVG文件转换为PDF格式
+- 使用无头Chrome进行高质量的PDF转换
+- 支持自定义Chrome/Chromium二进制文件路径
+
+### 使用方法
 
 ```bash
 ./svg2pdf.sh input.svg output.pdf
 ```
 
-#### 参数
+### 参数
 
 - `input.svg` - 输入的SVG文件路径
 - `output.pdf` - 输出的PDF文件路径
 
-#### 环境变量
+### 环境变量
 
 - `CHROME_BIN` - 可选，指定Chrome/Chromium二进制文件路径
 
-#### 示例
+### 示例
 
 ```bash
 # 基本转换
@@ -77,14 +103,7 @@
 CHROME_BIN=/usr/bin/google-chrome ./svg2pdf.sh diagram.svg diagram.pdf
 ```
 
-## 依赖要求
-
-### render_mermaid.sh
-
-- `curl` - 用于HTTP请求
-- 运行中的Mermaid渲染服务器
-
-### svg2pdf.sh
+### 依赖要求
 
 - Google Chrome 或 Chromium 浏览器
 - 支持POSIX shell
